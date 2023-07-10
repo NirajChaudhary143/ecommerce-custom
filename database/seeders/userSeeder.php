@@ -16,13 +16,13 @@ class UserSeeder extends Seeder
     public function run()
     {
         $admin = User::create([
-            'name' => 'Niraj',
+            'name' => 'sn pasal',
             'email' => 'admin@gmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password'), // password
         ]);
 
-        $adminRole = Role::findByName('admin');
+        $adminRole = Role::findByName('owner');
         $admin->assignRole($adminRole);
 
         $staff = User::create([
