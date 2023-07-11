@@ -31,17 +31,6 @@
     align-items: center;
     padding: 5px;
 }
-.brand-image-container{
-    /* width: 20%; */
-    /* height: 80%; */
-}
-
-.brand-image{
-    /* height: 50px;
-    width: 50px;
-    clip-path: circle(40%); */
-    /* background-color: black; */
-}
 
 .brand-name-container{
     margin-left: 3px;
@@ -107,7 +96,7 @@ a{
 .right-side-container{
     width: 85vw;
     height: 100vh;
-    /* background-color: rgb(0, 0, 0); */
+    background-color: rgb(243 243 243);
     /* padding: 10px; */
 }
 
@@ -116,7 +105,7 @@ a{
     border-bottom: 1px solid rgb(194 192 192);
     padding: 16px;
     display: flex;
-    /* justify-content: center; */
+    background-color: white;
     align-items: center;
     width: inherit;
 }
@@ -138,4 +127,132 @@ a{
     display: flex;
     justify-content: center;
     align-items: center;
+    /* cursor: pointer; */
+    /* position: relative; */
 }
+
+.content-container{
+    padding: 16px;
+}
+.user-title{
+    font-family: Roboto, sans-serif;
+    /* -webkit-tap-highlight-color: transparent; */
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+.user-table-container{
+    margin-top: 5px;
+}
+.user-table{
+    font-family: Roboto, sans-serif;
+    width: 100%;
+    caption-side: top;
+    color: rgb(0, 0, 0);
+    line-height: 1.55;
+    /* border-collapse: separate;
+    border-spacing: 0px; */
+}
+.user-table thead{
+    color: rgb(38, 39, 40)
+}
+table{
+    border:1px solid gray ; background-color: white;
+}
+th, td {
+    border-top: 1px solid gray;   
+    background-color: white;
+  }
+
+  th, td{
+    padding: 5px;
+  }
+  .roleDiv{
+    background-image: linear-gradient(to right, green,rgb(92, 192, 92));
+    width: 60px;
+    /* padding: 4px; */
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 3px;
+
+  }
+  .user-detail{
+    display: flex;
+    flex-direction: column;
+
+  }
+  .profilePic img{
+    width: 40px;
+    /* background-color: black; */
+    border-radius: 10px;
+    height: 40px;
+    margin-right: 10px;
+    /* border: 1px solid rgb(97, 94, 94); */
+  }
+  button{
+    border: 0px;
+    background-color: white;
+    cursor: pointer;
+  }
+  .profile-container{
+    position: relative;
+    /* margin-right: 60px; */
+    /* width: 200px;
+    background-color: blueviolet; */
+  }
+  .profile-container2{
+    display: flex;
+  }
+  .empty-container{
+    width: 100px;
+    /* display: inline; */
+  }
+  .dropdown-container{
+    position: absolute;
+    z-index: 100;
+    /* top:10; */
+    width: 140px;
+    /* padding: 3px; */
+    background-color: white;
+    color: rgb(38, 39, 40);
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+    border:1px solid rgb(212, 197, 197);
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+   /* visibility: hidden; */
+  }
+  .edit-profile{
+    border-bottom: 1px solid rgb(212, 197, 197);
+    padding: 5px;
+    margin: 1px;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+  }
+  .edit-profile:hover,.logout-btn:hover{
+    background-color: rgb(246, 242, 255);
+    /* color: black; */
+    border-radius: 5px;
+  }
+  .logout-btn{
+    color: rgb(237, 100, 100);
+    padding: 5px;
+    margin: 1px;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+  }
+  .dropdown-icon{
+    margin-right: 7px;
+  }
+  .dropdown-container.active{
+    opacity: 1;
+    max-height: 100px;
+  }

@@ -17,7 +17,7 @@
         {{-- Sidebar start --}}
             @include('admin.include.sidebar')
         {{-- Sidebar End --}}
-        
+
         <div class="right-side-container">
 
             {{-- Navbar Sart --}}
@@ -25,8 +25,9 @@
             {{-- Navbar End --}}
 
             {{-- Content Start --}}
+        
             <div class="content-container">
-
+                @yield('main-section')
             </div>
             {{-- COntent ENd --}}
         </div>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
@@ -20,6 +22,15 @@ class AdminController extends Controller
     }
     public function admin(){
         return view('admin.adminPanel');
+    }
+    public function storeUser(){
+        $user = Auth::user();
+        $roles = Role::all();
+        return view('admin.storeUser',compact('user','roles'));
+    }
+    public function category(){
+        
+        return view('admin.category');
     }
 
 }

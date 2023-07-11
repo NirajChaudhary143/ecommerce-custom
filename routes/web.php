@@ -30,6 +30,8 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware('auth','role:owner|staff')->group(function(){
     Route::get('/admin-panel',[AdminController::class,'admin'])->name('admin_panel');
+    Route::get('/admin/store-user',[AdminController::class,'storeUser'])->name('store_user');
+    Route::get('/admin/category',[AdminController::class,'category'])->name('admin.category');
 });
 Route::get('/redirect',[AdminController::class,'index'])->name('redirect');
 
