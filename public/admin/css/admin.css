@@ -91,6 +91,11 @@ a{
 .main-links-list a:hover .link-name{
     color: black;
 }
+.main-links-list a .active{
+  background-color: rgb(246, 242, 255);
+  border-radius: 10px;
+}
+
 
 /* Right Container Css */
 .right-side-container{
