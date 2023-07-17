@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('cost_per-item')->nullable();
             $table->integer('product_quantity');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('category_id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

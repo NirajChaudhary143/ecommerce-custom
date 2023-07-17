@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,7 @@ Route::middleware('auth','role:owner|staff')->group(function(){
     Route::get('/admin-panel',[AdminController::class,'admin'])->name('admin_panel');
     Route::get('/admin/store-user',[AdminController::class,'storeUser'])->name('store_user');
     Route::get('/admin/category',[AdminController::class,'category'])->name('admin.category');
+    Route::post('/admin/add-category',[CategoryController::class,'store'])->name('add.category');
 });
 Route::get('/redirect',[AdminController::class,'index'])->name('redirect');
 

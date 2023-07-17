@@ -25,38 +25,34 @@
                     </button>
                 </div>
                 <div class="dropdown-container">
-                   <div class="edit-profile">
-                    <div class="dropdown-icon">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                    </div>
-                    <div class="dropdown-title">
-                        Edit Profile
-                    </div>
-                   </div>
-                   <div class="logout-btn">
-                        <div class="dropdown-icon">
-                            <i class="fa fa-sign-out" aria-hidden="true"></i>
-                        </div>
-                        <div class="dropdown-title">
-                            Logout
-                        </div>
-                   </div>
+                
                 </div>
             </div>
     </div>
 </div>
 <script>
-  function activeDropdown(event) {
+
+function activeDropdown(event) {
     event.preventDefault();
     var dropdownContainer = document.querySelector('.dropdown-container');
     dropdownContainer.classList.toggle('active');
-  }
+    var newContent = '';
+    
+    if (dropdownContainer.classList.contains('active')) {
+        newContent = '<div class="edit-profile"><div class="dropdown-icon"><i class="fa fa-user" aria-hidden="true"></i></div><div class="dropdown-title">Edit Profile</div></div><div class="logout-btn"><div class="dropdown-icon"><i class="fa fa-sign-out" aria-hidden="true"></i></div><div class="dropdown-title">Logout</div></div>';
+    }
+    
+    dropdownContainer.innerHTML = newContent;
+}
 
-//   document.addEventListener('click', function (event) {
-//     var targetElement = event.target;
-//     var dropdownContainer = document.querySelector('.dropdown-container');
-//     if (!dropdownContainer.contains(targetElement) && !targetElement.classList.contains('dropdown-container')) {
-//       dropdownContainer.classList.remove('active');
-//     }
-//   });
+document.onclick = function(e) {
+        // console.log(e.target);
+        if(e.target.className !== 'profile'){
+            var dropdownContainer = document.querySelector('.dropdown-container');
+                dropdownContainer.classList.remove('active');
+                dropdownContainer.innerHTML ='';
+        }
+    }
+
+
 </script>

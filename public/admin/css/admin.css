@@ -261,3 +261,121 @@ th, td {
     opacity: 1;
     max-height: 100px;
   }
+
+
+  /* Category CSs Start */
+
+  .category-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .category-add-link{
+    margin-left: 50px;
+    padding: 6px;
+    background-color: rgb(136, 48, 247);
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    width: 130px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .category-add-link button{
+    color: white;
+    background-color: rgb(136, 48, 247);
+    font-weight: bold;
+    font-size: 14px;
+
+
+  }
+  .category-table{
+    margin-top: 10px;
+  }
+
+  .add-category-popup{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.338);
+  }
+
+  .add-category{
+    background-color: white;
+    /* height: 30vw; */
+    width: 30vw;
+    margin: auto;
+    margin-top: 10vh;
+    padding: 15px;
+    /* transition: all 1s ease; */
+  }
+  .add-category-container-1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .close-icon{
+    cursor: pointer;
+  }
+  .category-label{
+    margin-top: 5px;
+    /* text-align: center; */
+  }
+  .category-image{
+    margin: 5px 0px;
+    /* text-align: center; */
+
+  }
+  .upload-image-container{
+    /* margin-top: 10px; */
+    height: 100px;
+    margin: auto;
+    width: 100%;
+    border: 2px dashed black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .uploaded-image-category{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  #save-btn-category{
+    padding: 3px;
+    width: 70px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(143, 68, 235);
+    font-weight: bold;
+    color: white;
+    margin-top: 5px;
+    text-align: center;
+    /* float: right; */
+
+  }
+  #submit-btn{
+    display: flex;
+    justify-content: flex-end;
+  }
+  #uploaded-image{
+    width: 100%;
+    
+  }
+.category-label input{
+  padding: 5px;
+}
+  .category-label input::placeholder{
+    padding-left: 5px;
+  }
+
+
+
+  /* Category Css ENd */
