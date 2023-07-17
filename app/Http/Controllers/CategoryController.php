@@ -28,7 +28,13 @@ class CategoryController extends Controller
         $distPath = $request->file('image')->storeAs('category_image',$fileName,'public');
         $category->image= '/storage/'.$distPath;
         $category->save();
-        // echo $category->id; 
         
+        return redirect('/admin/category');
+        
+    }
+
+    public function delete($id){
+        Category::find($id)->delete();
+        return redirect('/admin/category');
     }
 }

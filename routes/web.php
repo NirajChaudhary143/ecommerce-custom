@@ -35,6 +35,9 @@ Route::middleware('auth','role:owner|staff')->group(function(){
     Route::get('/admin/category',[AdminController::class,'category'])->name('admin.category');
     Route::post('/admin/add-category',[CategoryController::class,'store'])->name('add.category');
 });
+Route::middleware('auth','role:owner')->group(function(){
+    Route::get('/admin/delete-category/{id}',[CategoryController::class,'delete'])->name('delete.category');
+});
 Route::get('/redirect',[AdminController::class,'index'])->name('redirect');
 
 require __DIR__.'/auth.php';

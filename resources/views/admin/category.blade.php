@@ -16,18 +16,30 @@
             <thead>
                 <tr>
                     <th width="50px">S.N.</th>
+                    {{-- <th>Image</th> --}}
                     <th>Name</th>
                     <th>Action</th>
                 </tr>
             </thead>
-                <tr>
-                    <td width="50px">1</td>
-                    <td>Fruits</td>
-                    <td><a style="color: rgb(237, 84, 84)" href="">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                </tr>
+            @foreach ($categories as $category)
+            <tr>
+                <td width="50px">{{$loop->iteration}}</td>
+                {{-- <td></td> --}}
+                <td style="font-weight: bold">
+                    <img src="{{asset($category->image)}}" alt="" srcset="" height="50px" width="50px" style="border-radius:5px;margin-right:3px">
+                    {{$category->name}}
+                </td>
+                <td>
+                    <button class="delete-btn" data-category_id="{{$category->id}}" style="color: rgb(237, 84, 84)">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                    <a class="clickToDelete" data-category_id="{{$category->id}}" style="color: rgb(237, 84, 84)" href="{{route('delete.category',['id'=>$category->id])}}" hidden>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+                
+            @endforeach
 
         </table>
         {{-- <div class="add-category">
@@ -61,6 +73,7 @@
                 </form>
             </div>
         </div> --}}
+
     </div>
 
     <script>
@@ -137,6 +150,79 @@
             }
             // addCategory.innerHTML = Newcontent;
         };
+
+        // Delete Category Start
+        function showDeleteConfirm(message) {
+            var deleteConfirmBox = document.createElement('div');
+            deleteConfirmBox.classList.add('delete-category-popup');
+    
+            var deleteMessageBox = document.createElement('div');
+            deleteMessageBox.classList.add('delete-message-box');
+            deleteConfirmBox.appendChild(deleteMessageBox);
+
+            var deleteMessageDiv = document.createElement('div');
+            deleteMessageDiv.classList.add('message-box-and-close');
+            deleteMessageBox.appendChild(deleteMessageDiv);
+
+            var messageBox = document.createElement('div');
+            messageBox.classList.add('message-box');
+            messageBox.textContent = message;
+            deleteMessageDiv.appendChild(messageBox);
+
+            var closeBox = document.createElement('div');
+            closeBox.classList.add('close-box');
+            closeBox.innerHTML ='<i class="fa fa-window-close" aria-hidden="true"></i>'
+            closeBox.addEventListener('click',CloseDeleteBox);
+            deleteMessageDiv.appendChild(closeBox);
+           
+            var deleteBtn = document.createElement('div');
+            deleteBtn.classList.add('delete-btn-category');
+            // deleteBtn.innerHTML='<button class="deleteBtn-Category">Delete</button>';
+            deleteMessageBox.appendChild(deleteBtn);
+
+            var deleteBtnCategory = document.createElement('button');
+            deleteBtnCategory.classList.add('deleteBtn-Category');
+            deleteBtnCategory.textContent = 'Delete';
+            deleteBtnCategory.addEventListener('click',deleteFunction);
+            deleteBtn.appendChild(deleteBtnCategory);
+
+            function deleteFunction() {
+                var deleteButtons = document.querySelectorAll('.delete-btn');      
+                deleteButtons.forEach(function (deleteButton) {
+                var categoryId = deleteButton.dataset.category_id;
+                var deleteBtnActive = document.querySelectorAll('.clickToDelete');
+                deleteBtnActive.forEach(function (singleBtn) {
+                    var linkCategoryId = singleBtn.dataset.category_id;
+                    if(categoryId==linkCategoryId){
+                        console.log(singleBtn);
+                        singleBtn.click();
+                    }
+                })
+
+              });
+
+            }
+
+            function  CloseDeleteBox() {
+                deleteConfirmBox.remove();
+            }
+            document.body.appendChild(deleteConfirmBox);
+            
+        }
+
+            // Select all delete-btn elements
+            var deleteButtons = document.querySelectorAll('.delete-btn');
+
+            // Iterate through each delete-btn element and add the event listener
+            deleteButtons.forEach(function (deleteButton) {
+            deleteButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                showDeleteConfirm("Are you sure to delete this category?");
+            });
+            });
+
+
+        // Delete Category End
 
     </script>
     
