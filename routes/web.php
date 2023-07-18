@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,9 @@ Route::middleware('auth','role:owner|staff')->group(function(){
     Route::get('/admin/store-user',[AdminController::class,'storeUser'])->name('store_user');
     Route::get('/admin/category',[AdminController::class,'category'])->name('admin.category');
     Route::post('/admin/add-category',[CategoryController::class,'store'])->name('add.category');
+    Route::get('/admin/product',[ProductController::class,'show'])->name('show.product');
+    Route::get('/admin/add-product',[ProductController::class,'index'])->name('view.add.product.form');
+    Route::post('/admin/add-product',[ProductController::class,'addProduct'])->name('add.product');
 });
 Route::middleware('auth','role:owner')->group(function(){
     Route::get('/admin/delete-category/{id}',[CategoryController::class,'delete'])->name('delete.category');

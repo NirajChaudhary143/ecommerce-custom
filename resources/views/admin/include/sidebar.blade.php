@@ -47,7 +47,7 @@
                     <div class="link-name">Categories</div>
                 </div>
             </a>
-            <a href="{{url('/product')}}"> 
+            <a href="{{route('show.product')}}"> 
                 <div class="main-link">
                     <div class="icon"><img width="16px" src="{{asset('image/products.svg')}}" alt="" srcset=""></div>
                     <div class="link-name">Products</div>

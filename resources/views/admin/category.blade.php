@@ -26,7 +26,7 @@
                 <td width="50px">{{$loop->iteration}}</td>
                 {{-- <td></td> --}}
                 <td style="font-weight: bold">
-                    <img src="{{asset($category->image)}}" alt="" srcset="" height="50px" width="50px" style="border-radius:5px;margin-right:3px">
+                    <img src="{{asset($category->image)}}" alt="" srcset="" height="40px" width="40px" style="border-radius:5px;margin-right:3px">
                     {{$category->name}}
                 </td>
                 <td>

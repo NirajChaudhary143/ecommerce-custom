@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="{{asset('admin/css/admin.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="{{asset('admin/img/favicon_io/android-chrome-512x512.png')}}">
+
+    {{-- Ck Editor --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
 </head>
 <body>
     {{-- Category Pop up Start --}}
@@ -40,4 +43,14 @@
         </div>
     </div>
 </body>
+<script>
+    ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .then( editor => {
+                    console.log( editor );
+            } )
+            .catch( error => {
+                    console.error( error );
+            } );
+</script>
 </html>

@@ -427,3 +427,33 @@ th, td {
 
 
   /* Category Css ENd */
+
+  /* Product Css Start */
+.status-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.status-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.status{
+  padding: 3px;
+  background-color: rgb(227 223 236);
+  border-radius: 5px;
+  margin: 3px;
+  font-size: 15px;
+  cursor: pointer;
+
+}
+
+.activeCheck{
+  margin-right: 3px;
+  color: blue;
+}
+.category-add-link a{
+  color: white;
+}
+  /* Product Css End */
