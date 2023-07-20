@@ -100,7 +100,7 @@ a{
 /* Right Container Css */
 .right-side-container{
     width: 85vw;
-    height: 100vh;
+    /* height: 100vh; */
     background-color: rgb(243 243 243);
     /* padding: 10px; */
 }
@@ -456,4 +456,40 @@ th, td {
 .category-add-link a{
   color: white;
 }
+
+.multiple-image-upload{
+  height: 100px;
+    margin: auto;
+    width: 100%;
+    border: 2px dashed black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.multiple-image-conatiner{
+  width: 100%;
+  padding: 3px;
+  display: inline;
+}
+.thumbnail{
+  height: 100px;
+  width: 100px;
+  /* background-color: aqua; */
+  padding: 3px;
+  display: inline;
+}
+
+.add-product-submit{
+  padding: 3px 15px;
+  /* width: 70px; */
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(143, 68, 235);
+  font-weight: 500;
+  color: white;
+  margin-top: 5px;
+  text-align: center;
+}
+
   /* Product Css End */
