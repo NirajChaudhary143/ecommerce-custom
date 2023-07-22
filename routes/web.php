@@ -25,12 +25,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth','verified')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::middleware('auth','role:owner|staff')->group(function(){
+Route::middleware('auth','verified','role:owner|staff')->group(function(){
     Route::get('/admin-panel',[AdminController::class,'admin'])->name('admin_panel');
     Route::get('/admin/store-user',[AdminController::class,'storeUser'])->name('store_user');
     Route::get('/admin/category',[AdminController::class,'category'])->name('admin.category');
@@ -39,9 +39,9 @@ Route::middleware('auth','role:owner|staff')->group(function(){
     Route::get('/admin/add-product',[ProductController::class,'index'])->name('view.add.product.form');
     Route::post('/admin/add-product',[ProductController::class,'addProduct'])->name('add.product');
 });
-Route::middleware('auth','role:owner')->group(function(){
+Route::middleware('auth','verified','role:owner')->group(function(){
     Route::get('/admin/delete-category/{id}',[CategoryController::class,'delete'])->name('delete.category');
 });
-Route::get('/redirect',[AdminController::class,'index'])->name('redirect');
+Route::get('/redirect',[AdminController::class,'index'])->name('redirect')->middleware('auth','verified');
 
 require __DIR__.'/auth.php';

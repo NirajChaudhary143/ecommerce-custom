@@ -70,13 +70,13 @@
                  <span style="color: red">*</span> <br>
                  {!! Form::file('product_image',['name'=>'images[]','multiple','accept'=>'image/*','hidden','id'=>'multiple-image']) !!}
                 <div class="multiple-image-upload">            
-                    <i style="color: rgb(85, 77, 77); font-size:30px" class="fa-solid fa-cloud-arrow-up"></i>
+                    <i style="color: rgb(143, 68, 235); font-size:30px" class="fa-solid fa-cloud-arrow-up"></i>
                 </div> 
              </div>
              <div class="p-2">
                  {!! Form::label('','Product Category',['style'=>'font-weight:600; font-size:15px']) !!}
                  <span style="color: red">*</span> <br>
-                 {!! Form::select('category_id',$categories->pluck('name','id'),null,['class'=>'form-control js-example-basic-multiple']); !!}
+                 {!! Form::select('category_id',$categories->pluck('name','id'),null,['class'=>'js-example-basic-multiple','style'=>'width:100%']); !!}
              </div>
 
             </div>
@@ -96,6 +96,7 @@
             defaultBtn.onchange = () => {
                 if(document.querySelector('.multiple-image-container')){
                 // Convert the FileList to an array using Array.from()
+                console.log(defaultBtn.files);
                  var filesArray = Array.from(defaultBtn.files);
 
                 // Loop through the selected image files
@@ -121,7 +122,8 @@
                     var imageContainer = document.createElement('div');
                     imageContainer.classList.add('multiple-image-container');
                     ImageUpload.insertAdjacentElement('afterend', imageContainer);
-    
+                console.log(defaultBtn.files);
+                
                     // Convert the FileList to an array using Array.from()
                     var filesArray = Array.from(defaultBtn.files);
     
