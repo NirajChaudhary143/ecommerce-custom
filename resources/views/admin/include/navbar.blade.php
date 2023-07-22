@@ -29,6 +29,7 @@
                 </div>
             </div>
     </div>
+    <form action="{{route('logout')}}" method="post" hidden>@csrf        <input id="logout" type="submit" value="Logout">   </form>     
 </div>
 <script>
 
@@ -39,18 +40,22 @@ function activeDropdown(event) {
     var newContent = '';
     
     if (dropdownContainer.classList.contains('active')) {
-        newContent = '<div class="edit-profile"><div class="dropdown-icon"><i class="fa fa-user" aria-hidden="true"></i></div><div class="dropdown-title">Edit Profile</div></div><div class="logout-btn"><div class="dropdown-icon"><i class="fa fa-sign-out" aria-hidden="true"></i></div><div class="dropdown-title">Logout</div></div>';
+        newContent = '<div class="edit-profile"><div class="dropdown-icon"><i class="fa fa-user" aria-hidden="true"></i></div><div class="dropdown-title">Edit Profile</div></div><div class="logout-btn" style="cursor:pointer"><div class="dropdown-icon"><i class="fa fa-sign-out" aria-hidden="true"></i></div><div class="dropdown-title logout-redirect">Logout</div></div>';
     }
     
     dropdownContainer.innerHTML = newContent;
 }
 
 document.onclick = function(e) {
-        // console.log(e.target);
-        if(e.target.className !== 'profile'){
+        console.log(e.target);
+        if(e.target.className !== 'profile' && e.target.className !== 'dropdown-container'){
             var dropdownContainer = document.querySelector('.dropdown-container');
                 dropdownContainer.classList.remove('active');
                 dropdownContainer.innerHTML ='';
+        }
+        if(e.target.className === 'dropdown-title logout-redirect'){
+            console.log(e.target);
+            document.querySelector('#logout').click();
         }
     }
 

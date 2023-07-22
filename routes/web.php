@@ -38,10 +38,11 @@ Route::middleware('auth','verified','role:owner|staff')->group(function(){
     Route::get('/admin/product',[ProductController::class,'show'])->name('show.product');
     Route::get('/admin/add-product',[ProductController::class,'index'])->name('view.add.product.form');
     Route::post('/admin/add-product',[ProductController::class,'addProduct'])->name('add.product');
+    // Route::post('/logout',[AdminController::class,'destroy'])->name('admin.logout.btn');
 });
 Route::middleware('auth','verified','role:owner')->group(function(){
     Route::get('/admin/delete-category/{id}',[CategoryController::class,'delete'])->name('delete.category');
 });
-Route::get('/redirect',[AdminController::class,'index'])->name('redirect')->middleware('auth','verified');
+Route::get('/redirect',[AdminController::class,'index'])->name('redirect')->middleware(['auth','verified']);
 
 require __DIR__.'/auth.php';
