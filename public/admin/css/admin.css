@@ -493,3 +493,18 @@ th, td {
 }
 
   /* Product Css End */
+
+
+/* Edit Profile css */
+.image-preview-container{
+  position: relative;
+}
+#cancelButton{
+  position: absolute;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+/* Edit Profile css end */

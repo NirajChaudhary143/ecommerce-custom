@@ -19,7 +19,7 @@
                     <td>1</td>
                     <td style="display: flex; align-items:center">
                         <div class="profilePic">
-                            <img src="{{asset('image/img_avatar2.png')}}" alt="" srcset="">
+                            <img src="{{asset($user->user_profile)}}" alt="" srcset="">
                         </div>
                         <div class="user-detail">
                             <div  style="text-transform:capitalize; font-weight:bold">

@@ -21,6 +21,9 @@ class AdminController extends Controller
         elseif ($user->roles->contains('name','owner')) {
             return redirect('/admin-panel');
         }
+        elseif ($user->roles->contains('name','staff')) {
+            return redirect('/admin-panel');
+        }
     }
     public function admin(){
         return view('admin.adminPanel');

@@ -1,3 +1,8 @@
+@extends('admin.adminPanel')
+@section('main-section')
+<div class="user-title">
+    Profile Information
+</div>
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
@@ -24,9 +29,15 @@
         </div>
 
         <div>
-            <x-input-label for="profile_image" :value="__('Profile Image')" />
-            <x-text-input id="profile_image" profile_image="profile_image" type="file" class="mt-1 block w-full" :value="old('profile_image', $user->profile_image)" required autofocus autocomplete="profile_image" />
-            <x-input-error class="mt-2" :messages="$errors->get('profile_image')" />
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" required autofocus autocomplete="username" />
+            <x-input-error class="mt-2" :messages="$errors->get('username')" />
+        </div>
+
+        <div>
+            <x-input-label for="user_profile" :value="__('Profile Image')" />
+            <x-text-input id="user_profile" name="user_profile" type="file" class="mt-1 block w-full" :value="old('user_profile', $user->user_profile)" required autofocus autocomplete="user_profile" />
+            <x-input-error class="mt-2" :messages="$errors->get('user_profile')" />
         </div>
 
         <div>
@@ -68,3 +79,7 @@
         </div>
     </form>
 </section>
+    
+@endsection
+
+

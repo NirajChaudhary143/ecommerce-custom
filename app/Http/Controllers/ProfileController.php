@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,25 +17,42 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
+        $userImage = Auth::user()->user_profile;
+        return view('admin.editProfile', [
             'user' => $request->user(),
+            'userImage'=>$userImage
         ]);
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request, $id)
     {
-        $request->user()->fill($request->validated());
+        // $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // if ($request->user()->isDirty('email')) {
+        //     $request->user()->email_verified_at = null;
+        // }
+        $request->validate([
+            'name'=>'required',
+            'username'=>'required|alpha_num',
+            'email'=>'required'
+        ]);
+
+        $user = User::find($id);
+        $user->name= $request->name;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->save();
+        if($request->hasFile('image')){
+            $fileName = $user->username.'.'.$request->file('image')->getClientOriginalExtension();
+            $filePath = $request->file('image')->storeAs('userImage',$fileName,'public');
+            $user->user_profile = '/storage/'.$filePath;
+            $user->save();
         }
 
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return redirect('/profile');
     }
 
     /**

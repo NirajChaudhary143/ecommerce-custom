@@ -4,6 +4,7 @@
             <img height="36px" src="{{asset('image/Sn logo-1.png')}}" alt="" srcset="">
         </div>
         @php
+            $userProfile = Auth::user()->user_profile;
             $name = Auth::user()->name;
             $initials = '';
             if ($name) {
@@ -12,6 +13,7 @@
                     $initials .= strtoupper(substr($part, 0, 1));
                 }
             }
+            
         @endphp
             <div class="profile-container">
                 <div class="profile-container2">
@@ -20,7 +22,11 @@
                     </div>
                     <button onclick="activeDropdown(event)">
                         <div class="profile">
-                            {{$initials}}
+                            @if (isset($userProfile) == null)
+                                {{$initials}}
+                            @else
+                            <img class="profile" src="{{asset($userProfile)}}" width="50px" height="50px" alt="">
+                            @endif
                         </div>
                     </button>
                 </div>
@@ -40,7 +46,7 @@ function activeDropdown(event) {
     var newContent = '';
     
     if (dropdownContainer.classList.contains('active')) {
-        newContent = '<div class="edit-profile"><div class="dropdown-icon"><i class="fa fa-user" aria-hidden="true"></i></div><div class="dropdown-title">Edit Profile</div></div><div class="logout-btn" style="cursor:pointer"><div class="dropdown-icon"><i class="fa fa-sign-out" aria-hidden="true"></i></div><div class="dropdown-title logout-redirect">Logout</div></div>';
+        newContent = '<div class="edit-profile"><div class="dropdown-icon"><i class="fa fa-user" aria-hidden="true"></i></div><div class="dropdown-title"><a href="{{route('profile.edit')}}">Edit Profile</a></div></div><div class="logout-btn" style="cursor:pointer"><div class="dropdown-icon"><i class="fa fa-sign-out" aria-hidden="true"></i></div><div class="dropdown-title logout-redirect">Logout</div></div>';
     }
     
     dropdownContainer.innerHTML = newContent;
@@ -48,6 +54,7 @@ function activeDropdown(event) {
 
 document.onclick = function(e) {
         console.log(e.target);
+
         if(e.target.className !== 'profile' && e.target.className !== 'dropdown-container'){
             var dropdownContainer = document.querySelector('.dropdown-container');
                 dropdownContainer.classList.remove('active');
