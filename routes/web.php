@@ -30,11 +30,7 @@ Route::middleware('auth','verified')->group(function () {
     Route::patch('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-// Route::middleware('auth','verified')->group(function () {
-//     Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/edit-profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/edit-profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
+
 Route::middleware('auth','verified','role:owner|staff')->group(function(){
     Route::get('/admin-panel',[AdminController::class,'admin'])->name('admin_panel');
     Route::get('/admin/store-user',[AdminController::class,'storeUser'])->name('store_user');

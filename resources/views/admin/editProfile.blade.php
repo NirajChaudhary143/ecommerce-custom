@@ -30,19 +30,6 @@
  
         </span>
     </div>
-    {{-- <div class="col bg-white p-1 mt-2">
-        <label for="">User Image</label>
-        <input type="file" name="image" id="user_profile" value="" class="form-control mt-1">
-        <div class="col">
-
-        </div>
-        <span class="text-danger">
-            @error('image')
-                {{$message}}
-            @enderror
- 
-        </span>
-    </div> --}}
     <div class="col bg-white p-1 mt-2">
         <label for="">Username</label>
         <input type="file" name="image" id="user_profile" value="" class="form-control mt-1">
@@ -78,10 +65,9 @@
    text-align: center;">
     </form>
 </div>
+
+@include('admin.update-password')
     
-<div class="user-title">
-    Update Password
-</div>
 
 
 <script>

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -50,6 +51,12 @@ class ProfileController extends Controller
             $filePath = $request->file('image')->storeAs('userImage',$fileName,'public');
             $user->user_profile = '/storage/'.$filePath;
             $user->save();
+            $sourcePath = public_path('/storage/userImage/'.$fileName);
+            $destPath = public_path('/storage/userImage/'.$fileName);
+            $img = Image::make($sourcePath);
+            $img->fit(350,300);
+            $img->save($destPath);
+
         }
 
         return redirect('/profile');
