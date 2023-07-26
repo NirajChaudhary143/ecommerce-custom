@@ -508,3 +508,52 @@ th, td {
 }
 
 /* Edit Profile css end */
+
+
+/* Log in Form Css */
+.login-container{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(73, 169, 159);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.login{
+  height: 400px;
+  width: 400px;
+  background: rgb(135,132,192);
+background: linear-gradient(115deg, rgba(135,132,192,1) 0%, rgba(95,95,253,1) 45%, rgba(0,212,255,1) 85%);
+color: white;
+  border-radius: 30%;
+  box-shadow: 1px 1px 10px 4px black;
+  padding: 10px;
+}
+@media screen and (max-width:500px) {
+  .login{
+    height: 350px;
+    width: 300px;
+  }
+  .login .login-title{
+    font-size: 16px;
+    margin-top: 15px;
+  }
+  .forgetpw{
+    font-size: 12px;
+  }
+  .rememberMe{
+    font-size: 12px;
+  }
+}
+
+.login-title{
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 45px;
+}
+/* Log in css end */
