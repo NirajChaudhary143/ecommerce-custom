@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\roleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,10 +40,14 @@ Route::middleware('auth','verified','role:owner|staff')->group(function(){
     Route::get('/admin/product',[ProductController::class,'show'])->name('show.product');
     Route::get('/admin/add-product',[ProductController::class,'index'])->name('view.add.product.form');
     Route::post('/admin/add-product',[ProductController::class,'addProduct'])->name('add.product');
+    Route::get('/admin/all-permission/',[roleController::class,'index'])->name('all.permission');
     // Route::post('/logout',[AdminController::class,'destroy'])->name('admin.logout.btn');
 });
 Route::middleware('auth','verified','role:owner')->group(function(){
     Route::get('/admin/delete-category/{id}',[CategoryController::class,'delete'])->name('delete.category');
+
+    Route::get('admin/add/permission',[roleController::class,'viewPermissionForm'])->name('view.permission');
+    Route::post('admin/add/permission',[roleController::class,'addPermission'])->name('add.permission');
 });
 Route::get('/redirect',[AdminController::class,'index'])->name('redirect')->middleware(['auth','verified']);
 

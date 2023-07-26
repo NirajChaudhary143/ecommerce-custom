@@ -1,4 +1,4 @@
-<div class="user-title mt-2">
+<div class="user-title">
     Update Password
 </div>
 @if(session('status'))
@@ -20,7 +20,7 @@
                 @enderror
             </span>
         </div>
-        <div class="col rounded-3 bg-white p-1 mt-1">
+        <div class="col rounded-3 bg-white p-1 mt-2">
             <label for="password">New Password</label>
             <input type="password" class="form-control mt-1" name="password">
             <span class="text-danger">
@@ -29,7 +29,7 @@
                 @enderror
             </span>
         </div>
-        <div class="col rounded-3 bg-white p-1 mt-1">
+        <div class="col rounded-3 bg-white p-1 mt-2">
             <label for="password_confirmation">Confirm Password</label>
             <input type="password" class="form-control mt-1" name="password_confirmation">
             <span class="text-danger">

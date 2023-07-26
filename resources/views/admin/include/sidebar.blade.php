@@ -41,6 +41,12 @@
                     <div class="link-name">Store User</div>
                 </div>
             </a>
+            <a href="{{route('all.permission')}}"> 
+                <div class="main-link">
+                    <div class="icon"><img width="16px" src="{{asset('image/users.svg')}}" alt="" srcset=""></div>
+                    <div class="link-name">Store User Permission</div>
+                </div>
+            </a>
             <a href="{{route('admin.category')}}"> 
                 <div class="main-link">
                     <div class="icon"><img width="16px" src="{{asset('image/categories.svg')}}" alt="" srcset=""></div>

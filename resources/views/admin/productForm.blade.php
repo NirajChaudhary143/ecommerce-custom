@@ -39,7 +39,6 @@
                  </div>
                 <div class="p-2">
                      {!! Form::label('','Crossed Price',['style'=>'font-weight:600; font-size:15px;text-decoration:line-through']) !!}
-                     <span style="color: red">*</span> <br>
                      {!! Form::number('crossed_price',0,['class'=>'form-control', 'min'=>'0']) !!}
                  </div>
             </div>
@@ -47,7 +46,6 @@
             <div class="col bg-white rounded-3 mt-3">
                 <div class="p-2">
                      {!! Form::label('','Quantity',['style'=>'font-weight:600; font-size:15px']) !!}
-                     <span style="color: red">*</span> <br>
                      {!! Form::number('product_quantity',0,['class'=>'form-control', 'min'=>'0']) !!}
                  </div>
             </div>

@@ -22,6 +22,11 @@
 
     {{-- Ck Editor --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/38.1.1/classic/ckeditor.js"></script>
+
+    {{-- jquery dataTables --}}
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
     {{-- Category Pop up Start --}}
