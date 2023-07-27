@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\roleController;
+use App\Http\Controllers\TempImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +41,9 @@ Route::middleware('auth','verified','role:owner|staff')->group(function(){
     Route::get('/admin/product',[ProductController::class,'show'])->name('show.product');
     Route::get('/admin/add-product',[ProductController::class,'index'])->name('view.add.product.form');
     Route::post('/admin/add-product',[ProductController::class,'addProduct'])->name('add.product');
-    Route::get('/admin/all-permission/',[roleController::class,'index'])->name('all.permission');
+    Route::get('/admin/all-permission',[roleController::class,'index'])->name('all.permission');
+    Route::post('/admin/temp-images',[TempImageController::class,'store'])->name('temp-images.create');
+    
     // Route::post('/logout',[AdminController::class,'destroy'])->name('admin.logout.btn');
 });
 Route::middleware('auth','verified','role:owner')->group(function(){
