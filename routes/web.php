@@ -43,6 +43,7 @@ Route::middleware('auth','verified','role:owner|staff')->group(function(){
     Route::post('/admin/add-product',[ProductController::class,'addProduct'])->name('add.product');
     Route::get('/admin/all-permission',[roleController::class,'index'])->name('all.permission');
     Route::post('/admin/temp-images',[TempImageController::class,'store'])->name('temp-images.create');
+    Route::delete('/delete-temp-images/{image_id}',[TempImageController::class,'deleteTempImage'])->name("delete-temp-images");
     
     // Route::post('/logout',[AdminController::class,'destroy'])->name('admin.logout.btn');
 });

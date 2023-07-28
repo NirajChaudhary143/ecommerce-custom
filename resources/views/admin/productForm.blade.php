@@ -4,6 +4,8 @@
     'route'=>'add.product',
     'mehtod'=>'post',
     'enctype'=>'multipart/form-data',
+    'id'=>'productForm',
+    'name'=>'productForm'
 ])
 !!}
 <div class="d-flex justify-content-start align-items-center">
@@ -22,12 +24,22 @@
                 <div class="p-2">
                      {!! Form::label('','Product Title',['style'=>'font-weight:600; font-size:15px']) !!}
                      <span style="color: red">*</span> <br>
-                     {!! Form::text('product_name',null,['class'=>'form-control','placeholder'=>'eg: Biscuits']) !!}
+                     {!! Form::text('product_title',null,['class'=>'form-control','placeholder'=>'eg: Biscuits']) !!}
+                     <span class="text-danger">
+                        @error('product_title')
+                            {{$message}}
+                        @enderror
+                    </span>
                  </div>
                  <div class="p-2">
                      {!! Form::label('','Product Description',['style'=>'font-weight:600; font-size:15px']) !!}
                      <span style="color: red">*</span> <br>
                      {!! Form::textarea('product_description',null,['class'=>'form-control','id'=>'editor']) !!}
+                     <span class="text-danger">
+                        @error('product_description')
+                            {{$message}}
+                        @enderror
+                    </span>
                  </div>
             </div>
             {{-- Item 2 --}}
@@ -36,10 +48,19 @@
                      {!! Form::label('','Selling Price',['style'=>'font-weight:600; font-size:15px']) !!}
                      <span style="color: red">*</span> <br>
                      {!! Form::number('selling_price',0,['class'=>'form-control', 'min'=>'0']) !!}
+                     <span class="text-danger">
+                        @error('selling_price')
+                            {{$message}}
+                        @enderror
+                    </span>
                  </div>
                 <div class="p-2">
                      {!! Form::label('','Crossed Price',['style'=>'font-weight:600; font-size:15px;text-decoration:line-through']) !!}
                      {!! Form::number('crossed_price',0,['class'=>'form-control', 'min'=>'0']) !!}
+                 </div>
+                <div class="p-2">
+                     {!! Form::label('','Cost Per Item',['style'=>'font-weight:600; font-size:15px']) !!}
+                     {!! Form::number('cost_per_item',0,['class'=>'form-control', 'min'=>'0']) !!}
                  </div>
             </div>
             {{-- Item 3 --}}
@@ -55,6 +76,11 @@
                      {!! Form::label('','Status',['style'=>'font-weight:600; font-size:15px']) !!}
                      <span style="color: red">*</span> <br>
                      {!! Form::select('status', ['active' => 'Active', 'draft' => 'Draft'],null,['class'=>'form-control']); !!}
+                     <span class="text-danger">
+                        @error('status')
+                            {{$message}}
+                        @enderror
+                    </span>
                  </div>
             </div>
         </div>
@@ -75,7 +101,8 @@
              {{-- Dropzone Js Start --}}
              {!! Form::label('','Product Image',['style'=>'font-weight:600; font-size:15px']) !!}
              <div id="imageDropzone" class="dropzone dz-clickable">
-                <div class="dz-message needsclick">    
+                <div class="dz-message needsclick">
+                    <i class="fa-solid fa-cloud-arrow-up" style="font-size:60px"></i>    
                     <br>Drop files here or click to upload.<br><br>                                            
                 </div>
             </div>
@@ -96,12 +123,17 @@
 </div>
 {{-- Row COntainer End --}}
 
+
+
+{!! Form::submit('Save Product',['class'=>'add-product-submit']) !!}
+
+
+{!! Form::close()!!}
+
 <script>
 Dropzone.autoDiscover = false;    
   const dropzone = $("#imageDropzone").dropzone({ 
-			uploadprogress: function(file, progress, bytesSent) {
-          $("button[type=submit]").prop('disabled',true);
-      },
+
       url:  "{{ route('temp-images.create') }}",
       maxFiles: 10,
       paramName: 'image',
@@ -111,22 +143,42 @@ Dropzone.autoDiscover = false;
           'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
       }, success: function(file, response){
         //   $("#image_id").val(response.image_id);
-        var html = ` <img src="${response.imagePath}" alt="" style="width:100px;height:100px; padding:3px">`;
+        var html = `<div class="col-md-3 my-1 " id="product-image-row-${response.image_id}">
+                            <div class="card image-card border-0">
+                                <i onclick="deleteImage(${response.image_id})" style="float:right;color:red;position: absolute;right: 8px;font-size:20px;cursor:pointer;background-color:white" class="fa-solid fa-xmark mt-1"></i>
+                                <img src="${response.imagePath}" alt="" class="w-100 card-img-top">
+                                <input type="hidden" name="image_id[]" value="${response.image_id}"/>
+                            </div>
+                        </div>`;
         $('#image-wrapper').append(html);
           this.removeFile(file);            
       }
   });
-</script>
 
-<script>
+  function deleteImage(id){
+  if(confirm("Are you sure to delete image")){
+    $("#product-image-row-"+id).remove();
+    var URL = "{{ route('delete-temp-images','ID') }}";
+    newUrl =URL.replace('ID',id);
+  $.ajax({
+    url:newUrl,
+    data:{},
+    method:'delete',
+    dataType:'json',
+    headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            success: function(response){
+              
+            }
+  });
+}
+
+}
+
+
                 // Select 2
                 $(document).ready(function() {
             $('.js-example-basic-multiple').select2();
         });
 </script>
-
-
-{!! Form::submit('Save Product',['class'=>'add-product-submit']) !!}
-
-
-{!! Form::close()!!}

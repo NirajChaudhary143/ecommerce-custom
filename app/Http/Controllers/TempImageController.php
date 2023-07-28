@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\TempImage;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
+
 class TempImageController extends Controller
 {
     public function store(Request $request){
@@ -37,5 +39,17 @@ class TempImageController extends Controller
                 'imagePath'=> asset('uploads/temp/thumb/'.$imgName),
             ]);
         }
+    }
+
+    public function deleteTempImage($image_id){
+        $tempImage = tempImage::find($image_id);
+        File::delete(public_path('uploads/temp/'.$tempImage->name));
+        File::delete(public_path('uploads/temp/thumb/'.$tempImage->name));
+        $tempImage->delete();
+        return response()->json([
+            'tempImage'=> public_path('uploads/temp/'.$tempImage->name),
+            'thumbNail'=>public_path('uploads/temp/thumb'.$tempImage->name),
+            'status'=>'Deleted',
+        ]);
     }
 }
