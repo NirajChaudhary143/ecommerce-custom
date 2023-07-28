@@ -79,6 +79,9 @@
                     <br>Drop files here or click to upload.<br><br>                                            
                 </div>
             </div>
+            <div id="image-wrapper" class="row">
+
+            </div>
 
              {{-- Dropzone js End --}}
              <div >
@@ -107,7 +110,9 @@ Dropzone.autoDiscover = false;
       headers: {
           'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
       }, success: function(file, response){
-          $("#image_id").val(response.image_id);
+        //   $("#image_id").val(response.image_id);
+        var html = ` <img src="${response.imagePath}" alt="" style="width:100px;height:100px; padding:3px">`;
+        $('#image-wrapper').append(html);
           this.removeFile(file);            
       }
   });

@@ -33,7 +33,8 @@ class TempImageController extends Controller
             return response()->json([
                 'status'=>true,
                 'image_id'=>$tempImg->id,
-                'name'=> $imgName
+                'name'=> $imgName,
+                'imagePath'=> asset('uploads/temp/thumb/'.$imgName),
             ]);
         }
     }
