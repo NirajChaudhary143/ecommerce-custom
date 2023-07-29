@@ -564,3 +564,10 @@ color: white;
   margin-top: 45px;
 }
 /* Log in css end */
+
+
+.dataTables_wrapper .dataTables_filter input{
+  /* border: 1px solid rgb(143, 68, 235) !important; */
+  border-radius: 5px !important;
+  padding-left: 10px !important;
+}
