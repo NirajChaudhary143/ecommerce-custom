@@ -573,3 +573,6 @@ color: white;
 }
 
 /* Filter */
+#draft-product{
+  display: none;
+}
