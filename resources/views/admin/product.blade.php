@@ -20,7 +20,8 @@
         {{-- Add Link Ends --}}
             </div>
         </div>
-        <div class="product-table mt-2">
+        {{-- Active product start --}}
+        <div class="product-table mt-2" id="active-product">
             <table width="100%" id="product-table" class="hover ">
                 <thead>
                     <tr>
@@ -33,37 +34,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($products as $product)
-                        <tr>
-                            <td width="50px">{{$loop->iteration}}</td>
-                            <td width="400px">
-                                <div class="d-flex align-items-center">
-                                    @foreach ($productImages as $productImage)
-                                        @if ($productImage->product_id == $product->id)
-                                        <img src="{{asset('uploads/products/'.$productImage->name)}}" alt="" srcset="" style="border-radius: 10px;width:50px;height:50px">
-                                            @break
-        
-                                        @else
-                                        <img src="{{asset('image/favicon.png')}}" alt="" srcset="" style="border-radius: 10px;width:50px;height:50px">
-                                        @break
-                                        @endif
-                                    @endforeach
-                                    <div style="margin-left: 3px">{!! Illuminate\Support\Str::limit($product->product_title, $limit = 90, $end = '...') !!}</div>
-
-                                </div>
-                            </td>
-                            <td>{{$product->selling_price}}</td>
-                            <td>{{$product->category->name}}</td>
-                            <td>{{$product->status}}</td>
-                            <td>
-                                <a href="" class="btn btn-danger">Delete</a>
-                                <a href="" class="btn btn-success">Edit</a>
-                            </td>
-                        </tr>
-                    @endforeach
+                    @foreach ($Products as $product)
+                    <tr>
+                        <td width="50px">{{ $loop->iteration }}</td>
+                        <td width="400px">
+                            <div class="d-flex align-items-center">
+                                @php
+                                    $productImage = $productImages->where('product_id', $product->id)->first();
+                                @endphp
+                                @if ($productImage)
+                                    <img src="{{ asset('uploads/products/' . $productImage->name) }}" alt="" srcset=""
+                                        style="border-radius: 10px;width:50px;height:50px">
+                                @else
+                                    <img src="{{ asset('image/favicon.png') }}" alt="" srcset=""
+                                        style="border-radius: 10px;width:50px;height:50px">
+                                @endif
+                                <div style="margin-left: 3px">{!! Illuminate\Support\Str::limit($product->product_title, 90, '...') !!}</div>
+                            </div>
+                        </td>
+                        <td>{{ $product->selling_price }}</td>
+                        <td>{{ $product->category->name }}</td>
+                        <td>{{ $product->status }}</td>
+                        <td>
+                            <a href="#" class="btn btn-danger">Delete</a>
+                            <a href="#" class="btn btn-success">Edit</a>
+                        </td>
+                    </tr>
+                @endforeach
+                
                 </tbody>
             </table>
         </div>
+{{-- Active Product end --}}
+
+
     </div>
     {{-- Product container End --}}
 
@@ -72,6 +76,7 @@
     <script>
         var statusList = document.querySelectorAll('.status');
         var activeCheck = null; // Track the active check element
+        var statusName =null;
     
         window.onload = function () {
             var firstStatus = statusList[0];
@@ -81,6 +86,8 @@
                 activeCheck.classList.add('fa-check');
                 activeCheck.classList.add('activeCheck');
                 firstStatus.insertBefore(activeCheck, firstStatus.firstChild);
+                statusName="Active";
+                console.log(statusName);
             }
         };
     
@@ -89,7 +96,8 @@
                 if (activeCheck) {
                     activeCheck.remove(); // Remove active check from previous status
                 }
-    
+                statusName = status.innerText.trim();
+                console.log(statusName);
                 activeCheck = document.createElement('i');
                 activeCheck.classList.add('fa-solid');
                 activeCheck.classList.add('fa-check');
@@ -111,10 +119,5 @@
 } );
 
     </script>
-    
-    
-
-
-    {{-- Javascript End --}}
-
+      {{-- Javascript End --}}
 @endsection

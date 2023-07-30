@@ -12,9 +12,9 @@ use Intervention\Image\Facades\Image;
 class ProductController extends Controller
 {
     public function show(){
-        $products=Product::all();
+        $Products=Product::all();
         $productImages = ProductImages::all();
-        return view('admin.product',compact('products','productImages'));
+        return view('admin.product',compact('Products','productImages'));
     }
     public function index(){
         $categories = Category::all();
