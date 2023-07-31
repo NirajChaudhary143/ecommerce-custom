@@ -1,5 +1,14 @@
 
-
+@if (isset($product))
+{!!Form::model($product,[
+    'route'=>['update.product',$product->id],
+    'mehtod'=>'post',
+    'enctype'=>'multipart/form-data',
+    'id'=>'productForm',
+    'name'=>'productForm'
+])
+!!}
+@else
 {!!Form::model([
     'route'=>'add.product',
     'mehtod'=>'post',
@@ -8,6 +17,9 @@
     'name'=>'productForm'
 ])
 !!}
+    
+@endif
+
 <div class="d-flex justify-content-start align-items-center">
     <i style="margin-right: 4px" class="fa-solid fa-arrow-left"></i>
     <div class="user-title">
@@ -47,7 +59,7 @@
                 <div class="p-2">
                      {!! Form::label('','Selling Price',['style'=>'font-weight:600; font-size:15px']) !!}
                      <span style="color: red">*</span> <br>
-                     {!! Form::number('selling_price',0,['class'=>'form-control', 'min'=>'0']) !!}
+                     {!! Form::number('selling_price',null,['class'=>'form-control', 'min'=>'0']) !!}
                      <span class="text-danger">
                         @error('selling_price')
                             {{$message}}
@@ -56,18 +68,18 @@
                  </div>
                 <div class="p-2">
                      {!! Form::label('','Crossed Price',['style'=>'font-weight:600; font-size:15px;text-decoration:line-through']) !!}
-                     {!! Form::number('crossed_price',0,['class'=>'form-control', 'min'=>'0']) !!}
+                     {!! Form::number('crossed_price',null,['class'=>'form-control', 'min'=>'0']) !!}
                  </div>
                 <div class="p-2">
                      {!! Form::label('','Cost Per Item',['style'=>'font-weight:600; font-size:15px']) !!}
-                     {!! Form::number('cost_per_item',0,['class'=>'form-control', 'min'=>'0']) !!}
+                     {!! Form::number('cost_per_item',null,['class'=>'form-control', 'min'=>'0']) !!}
                  </div>
             </div>
             {{-- Item 3 --}}
             <div class="col bg-white rounded-3 mt-3">
                 <div class="p-2">
                      {!! Form::label('','Quantity',['style'=>'font-weight:600; font-size:15px']) !!}
-                     {!! Form::number('product_quantity',0,['class'=>'form-control', 'min'=>'0']) !!}
+                     {!! Form::number('product_quantity',null,['class'=>'form-control', 'min'=>'0']) !!}
                  </div>
             </div>
             {{-- Item 4 --}}
@@ -89,14 +101,6 @@
       {{-- Column 2 --}}
       <div class="col col-md-6">
         <div class="bg-white rounded-3 p-2">
-            {{-- <div class="p-2">
-                 {!! Form::label('','Product Image',['style'=>'font-weight:600; font-size:15px']) !!}
-                 <span style="color: red">*</span> <br>
-                 {!! Form::file('product_image',['name'=>'images[]','multiple','accept'=>'image/*','hidden','id'=>'multiple-image']) !!}
-                <div class="multiple-image-upload">            
-                    <i style="color: rgb(143, 68, 235); font-size:30px" class="fa-solid fa-cloud-arrow-up"></i>
-                </div> 
-             </div> --}}
 
              {{-- Dropzone Js Start --}}
              {!! Form::label('','Product Image',['style'=>'font-weight:600; font-size:15px']) !!}
@@ -107,7 +111,18 @@
                 </div>
             </div>
             <div id="image-wrapper" class="row">
-
+                @if (isset($productImage))
+                @foreach ($productImage as $image)
+                    <div class="col-md-3 my-1 " id="">
+                        <div class="card image-card border-0">
+                            <i onclick="" style="float:right;color:red;position: absolute;right: 8px;font-size:20px;cursor:pointer;background-color:white" class="fa-solid fa-xmark mt-1"></i>
+                            <img src="{{asset('uploads/products/'.$image->name)}}" alt="" class="w-100 card-img-top">
+                            <input type="hidden" name="image_id[]" value="{{$image->id}}"/>
+                        </div>
+                    </div>
+                    
+                @endforeach
+                @endif
             </div>
 
              {{-- Dropzone js End --}}

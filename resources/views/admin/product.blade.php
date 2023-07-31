@@ -10,7 +10,6 @@
             <div class="status-container">
                 <div class="status">Active</div>
                 <div class="status">Draft</div>
-                <div class="status">Archived</div>
             </div>
             <div class="search-wrapper">
                         {{-- Add Link --}}
@@ -68,7 +67,7 @@
 {{-- Active Product end --}}
 
 {{-- Draft Product --}}
-<div id="draft-product" class="product-table mt-2">
+<div id="draft-product" class="mt-2">
     <table width="100%" id="draft-product-table" class="hover ">
         <thead>
             <tr>
@@ -108,7 +107,6 @@
                 </td>
             </tr>
         @endforeach
-        
         </tbody>
     </table>
 </div>

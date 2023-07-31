@@ -39,6 +39,8 @@ Route::middleware('auth','verified','role:owner|staff')->group(function(){
     Route::get('/admin/category',[AdminController::class,'category'])->name('admin.category');
     Route::post('/admin/add-category',[CategoryController::class,'store'])->name('add.category');
     Route::get('/admin/product',[ProductController::class,'show'])->name('show.product');
+    Route::get('/admin/edit/product/{id}',[ProductController::class,'editView'])->name('edit.product');
+    Route::post('/admin/edit/product/{id}',[ProductController::class,'updateProduct'])->name('update.product');
     Route::get('/admin/add-product',[ProductController::class,'index'])->name('view.add.product.form');
     Route::post('/admin/add-product',[ProductController::class,'addProduct'])->name('add.product');
     Route::get('/admin/all-permission',[roleController::class,'index'])->name('all.permission');

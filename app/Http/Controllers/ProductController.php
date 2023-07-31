@@ -76,4 +76,15 @@ class ProductController extends Controller
             return redirect('/admin/product');
         }
     }
+
+    public function editView($id){
+        $product= Product::find($id);
+        $categories = Category::all();
+        $productImage = ProductImages::where('product_id',$id)->get();
+        return view('admin.editProduct',compact('product','categories','productImage'));
+    }
+
+    public function updateProduct(Request $request,$id){
+
+    }
 }
