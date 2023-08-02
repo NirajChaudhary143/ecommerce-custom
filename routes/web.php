@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\productImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\TempImageController;
@@ -44,6 +45,8 @@ Route::middleware('auth','verified','role:owner|staff')->group(function(){
     Route::get('/admin/add-product',[ProductController::class,'index'])->name('view.add.product.form');
     Route::post('/admin/add-product',[ProductController::class,'addProduct'])->name('add.product');
     Route::get('/admin/delete-product/{id}',[ProductController::class,'deleteProduct'])->name('delete.product');
+    Route::post('/product-images',[productImageController::class,'store'])->name('product-image.store');
+    Route::delete('/product-images/delete/{image_id}',[productImageController::class,'deleteImage'])->name('product-image.delete');
     Route::get('/admin/all-permission',[roleController::class,'index'])->name('all.permission');
     Route::post('/admin/temp-images',[TempImageController::class,'store'])->name('temp-images.create');
     Route::delete('/delete-temp-images/{image_id}',[TempImageController::class,'deleteTempImage'])->name("delete-temp-images");
