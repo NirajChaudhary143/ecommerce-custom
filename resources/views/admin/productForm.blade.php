@@ -23,7 +23,7 @@
 <div class="d-flex justify-content-start align-items-center">
     <i style="margin-right: 4px" class="fa-solid fa-arrow-left"></i>
     <div class="user-title">
-        Add Product
+        {{$title}}
     </div>
 </div>
 {{-- Row Container Start --}}
@@ -113,9 +113,9 @@
             <div id="image-wrapper" class="row">
                 @if (isset($productImage))
                 @foreach ($productImage as $image)
-                    <div class="col-md-3 my-1 " id="">
+                    <div class="col-md-3 my-1" id="product-image-row-{{$image->id}}">
                         <div class="card image-card border-0">
-                            <i onclick="" style="float:right;color:red;position: absolute;right: 8px;font-size:20px;cursor:pointer;background-color:white" class="fa-solid fa-xmark mt-1"></i>
+                            <i onclick="deleteImage({{$image->id }})" style="float:right;color:red;position: absolute;right: 8px;font-size:20px;cursor:pointer;background-color:white" class="fa-solid fa-xmark mt-1"></i>
                             <img src="{{asset('uploads/products/'.$image->name)}}" alt="" class="w-100 card-img-top">
                             <input type="hidden" name="image_id[]" value="{{$image->id}}"/>
                         </div>
@@ -140,7 +140,7 @@
 
 
 
-{!! Form::submit('Save Product',['class'=>'add-product-submit']) !!}
+{!! Form::submit($btn,['class'=>'add-product-submit','id'=>'updateBtn']) !!}
 
 
 {!! Form::close()!!}

@@ -55,8 +55,8 @@
                         <td>{{ $product->category->name }}</td>
                         <td>{{ $product->status }}</td>
                         <td>
-                            <a href="#" class="btn btn-danger">Delete</a>
-                            <a href="#" class="btn btn-success">Edit</a>
+                            <a href="{{route('delete.product',['id'=>$product->id])}}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                            <a href="{{route('edit.product',['id'=>$product->id])}}" class="btn btn-success"><i class="fas fa-edit"></i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -71,8 +71,8 @@
     <table width="100%" id="draft-product-table" class="hover ">
         <thead>
             <tr>
-                <th width="50px">S.N.</th>
-                <th width="400px">Product Title</th>
+                <th>S.N.</th>
+                <th width="300px">Product Title</th>
                 <th>Selling Price</th>
                 <th>Product Category</th>
                 <th>Status</th>
@@ -82,8 +82,8 @@
         <tbody>
             @foreach ($draftProducts as $product)
             <tr>
-                <td width="50px">{{ $loop->iteration }}</td>
-                <td width="400px">
+                <td>{{ $loop->iteration }}</td>
+                <td width="300px">
                     <div class="d-flex align-items-center">
                         @php
                             $productImage = $productImages->where('product_id', $product->id)->first();
@@ -102,8 +102,8 @@
                 <td>{{ $product->category->name }}</td>
                 <td>{{ $product->status }}</td>
                 <td>
-                    <a href="#" class="btn btn-danger">Delete</a>
-                    <a href="#" class="btn btn-success">Edit</a>
+                    <a href="{{route('delete.product',['id'=>$product->id])}}" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+                    <a href="{{route('edit.product',['id'=>$product->id])}}" class="btn btn-success"><i class="fas fa-edit"></i></a>
                 </td>
             </tr>
         @endforeach

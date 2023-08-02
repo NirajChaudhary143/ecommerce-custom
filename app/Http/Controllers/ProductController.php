@@ -18,8 +18,10 @@ class ProductController extends Controller
         return view('admin.product',compact('activeProducts','productImages','draftProducts'));
     }
     public function index(){
+        $title = "Add Product";
+        $btn = 'Save Product';
         $categories = Category::all();
-        return view('admin.addProduct',compact('categories'));
+        return view('admin.addProduct',compact('categories','title','btn'));
     }
 
 
@@ -78,13 +80,40 @@ class ProductController extends Controller
     }
 
     public function editView($id){
+        $title = "Edit Product";
+        $btn ="Update Product";
         $product= Product::find($id);
         $categories = Category::all();
         $productImage = ProductImages::where('product_id',$id)->get();
-        return view('admin.editProduct',compact('product','categories','productImage'));
+        return view('admin.editProduct',compact('product','categories','productImage','title','btn'));
     }
 
     public function updateProduct(Request $request,$id){
+        // echo '</pre>';
+        // print_r($request->toArray());
+        $request->validate([
+            'product_title' => 'required|not_regex:/^[0-9]+$/',
+            'product_description'=>'required|not_regex:/^[0-9]+$/',
+            'selling_price'=>'required|numeric|gt:1',    
+        ]);
 
+        $product = Product::find($id);
+        $product->product_title=$request['product_title'];
+        $product->product_description=$request['product_description'];
+        $product->selling_price=$request['selling_price'];
+        $product->crossed_price=$request['crossed_price'];
+        $product->category_id=$request['category_id'];
+        $product->cost_per_item=$request['cost_per_item'];
+        $product->product_quantity=$request['product_quantity'];
+        $product->status=$request['status'];
+        $res = $product->save();
+        if($res){
+            return redirect('/admin/product');
+        }
+    }
+
+    public function deleteProduct($id){
+        Product::find($id)->delete();
+        return redirect('/admin/product');
     }
 }

@@ -43,6 +43,7 @@ Route::middleware('auth','verified','role:owner|staff')->group(function(){
     Route::post('/admin/edit/product/{id}',[ProductController::class,'updateProduct'])->name('update.product');
     Route::get('/admin/add-product',[ProductController::class,'index'])->name('view.add.product.form');
     Route::post('/admin/add-product',[ProductController::class,'addProduct'])->name('add.product');
+    Route::get('/admin/delete-product/{id}',[ProductController::class,'deleteProduct'])->name('delete.product');
     Route::get('/admin/all-permission',[roleController::class,'index'])->name('all.permission');
     Route::post('/admin/temp-images',[TempImageController::class,'store'])->name('temp-images.create');
     Route::delete('/delete-temp-images/{image_id}',[TempImageController::class,'deleteTempImage'])->name("delete-temp-images");
