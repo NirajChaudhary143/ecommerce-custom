@@ -20,10 +20,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -59,6 +55,9 @@ Route::middleware('auth','verified','role:owner')->group(function(){
     Route::get('admin/add/permission',[roleController::class,'viewPermissionForm'])->name('view.permission');
     Route::post('admin/add/permission',[roleController::class,'addPermission'])->name('add.permission');
 });
-Route::get('/redirect',[AdminController::class,'index'])->name('redirect')->middleware(['auth','verified']);
+Route::get('/redirect',[AdminController::class,'redirect'])->name('redirect')->middleware(['auth','verified']);
 
+//user website
+
+   Route::get('/',[AdminController::class,'index'])->name('website.homepage');
 require __DIR__.'/auth.php';

@@ -11,7 +11,7 @@ use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
 {
-    public function index(){
+    public function redirect(){
         $user = Auth::user();
         // echo "<pre>";
         // print_r($user->roles->pluck('name')->toArray());
@@ -24,6 +24,9 @@ class AdminController extends Controller
         elseif ($user->roles->contains('name','staff')) {
             return redirect('/admin-panel');
         }
+    }
+    public function index(){
+        return view('user.index');
     }
     public function admin(){
         return view('admin.adminPanel');
