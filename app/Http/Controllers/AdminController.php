@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -26,7 +27,9 @@ class AdminController extends Controller
         }
     }
     public function index(){
-        return view('user.index');
+        $products = Product::all();
+        $categories = Category::all();
+        return view('user.index',compact('products','categories'));
     }
     public function admin(){
         return view('admin.adminPanel');

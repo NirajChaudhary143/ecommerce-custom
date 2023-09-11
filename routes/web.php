@@ -7,6 +7,7 @@ use App\Http\Controllers\productImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\TempImageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,5 +60,6 @@ Route::get('/redirect',[AdminController::class,'redirect'])->name('redirect')->m
 
 //user website
 
-   Route::get('/',[AdminController::class,'index'])->name('website.homepage');
+   Route::get('/',[UserController::class,'index'])->name('website.homepage');
+   Route::get('/product-details/{id}',[UserController::class,'product_details'])->name('product.details');
 require __DIR__.'/auth.php';

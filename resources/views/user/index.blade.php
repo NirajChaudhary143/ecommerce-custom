@@ -20,32 +20,37 @@
     {{-- main-container start --}}
     <div class="main-container">
         <div class="navbar-container">
-            <div class="nav-items">
+            <div class="nav-item-wrapper">
                 <div class="brand-container">
                     <h1>SN</h1>
                 </div>
-                <ul class="category-list mb-0"> 
-                    <li><a href="#">Everything</a></li>
-                    <li><a href="#">Women</a></li>
-                    <li><a href="#">Men</a></li>
-                    <li><a href="#">Accessories</a></li>
-                </ul>
-            </div>
-            {{-- <div class="nav-items">
-                <ul class="category-list mb-0"> 
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    @if (Auth::user())
-                    <li style="padding-right: 0"><a href="#">$0.00 <i style="margin-left: 3px" class="fa-solid fa-cart-shopping"></i></a></li>
-                    <li style="padding-right: 0"><a href="#"><i class="fa-solid fa-user"></i></a></li>
-                    @else
-                    <li style="padding-right: 0"><a href="{{route('register')}}">Register</a></li> 
-                    @endif
-                </ul>
-            </div> --}}
-            <div class="mobile-btn">
-                <i class="fa-solid fa-bars mobile-iconn" ></i>
-                <i class="fa-solid fa-xmark mobile-iconn" name="close-icon"></i>
+                <div class="nav-items">
+                    <ul class="category-list mb-0"> 
+                        <li><a href="#">Everything</a></li>
+                        <li><a href="#">Women</a></li>
+                        <li><a href="#">Men</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#" name="dashed-line">|</a></li>
+                    </ul>
+                    <div class="nav-items-2">
+                        <ul class="category-list mb-0"> 
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            @if (Auth::user())
+                            <li style="padding-right: 0"><a href="#">$0.00 <i style="margin-left: 3px" class="fa-solid fa-cart-shopping"></i></a></li>
+                            <li style="padding-right: 0"><a href="#"><i class="fa-solid fa-user"></i></a></li>
+                            @else
+                            <li style="padding-right: 0"><a href="{{route('register')}}">Register</a></li> 
+                            @endif
+                        </ul>
+
+                    </div>
+
+                </div>
+                <div class="mobile-btn">
+                    <i class="fa-solid fa-bars mobile-iconn" id="hamburger"></i>
+                    <i class="fa-solid fa-xmark mobile-iconn" name="close-icon" id="closeMenu"></i>
+                </div>
             </div>
         </div>
     {{-- Navbar ENd --}}
@@ -63,52 +68,39 @@
     
 </div>
 {{-- main-container end --}}
-{{-- <div class="row gx-5 mt-2" id="category-container">
-    <div class="col-lg-4 position-relative category-image-container">
-        <div class="category-image">
-            <img src="https://img.freepik.com/free-photo/fashion-girl-posing-studio-wearing-smart-casual-sportive-outfit-business-style-sweet-pastel-colors-sunglasses-backpack-denim-jacket-mint-background-stylish-woman_291049-1800.jpg?w=2000" alt="">
-        </div>
-        <div class="inner-wrapper col" style="margin-top: 15rem !important; padding:10px !important">
-            <div class="inner-content" style="color: white;z-index:12;position: relative;">
-                20% Off On Tank Tops
+<div class="category-wrapper m-auto mt-2 mb-4">
+    <div class="category-card">
+        @foreach ($categories as $category)
+        <div class="image-card">
+            <img src="{{asset($category->image)}}" alt="">
+            <div class="image-card-title">
+                {{$category->name}}
             </div>
-        <div class="mt-2" style="color: white;z-index:12;position: relative; font-weight:500;text-align:justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-        <button class="mt-2" id="shop" style="z-index:12;position: relative;">Shop Now</button>
         </div>
+        @endforeach
     </div>
-    <div class="col-lg-4 position-relative category-image-container">
-        <div class="category-image">
-            <img src="https://img.freepik.com/free-photo/fashion-girl-posing-studio-wearing-smart-casual-sportive-outfit-business-style-sweet-pastel-colors-sunglasses-backpack-denim-jacket-mint-background-stylish-woman_291049-1800.jpg?w=2000" alt="">
-        </div>
-        <div class="inner-wrapper col" style="margin-top: 15rem !important; padding:10px !important">
-            <div class="inner-content" style="color: white;z-index:12;position: relative;">
-                20% Off On Tank Tops
-            </div>
-        <div class="mt-2" style="color: white;z-index:12;position: relative; font-weight:500;text-align:justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-        <button class="mt-2" id="shop" style="z-index:12;position: relative;">Shop Now</button>
-        </div>
-    </div>
-    <div class="col-lg-4 position-relative category-image-container">
-        <div class="category-image">
-            <img src="https://img.freepik.com/free-photo/fashion-girl-posing-studio-wearing-smart-casual-sportive-outfit-business-style-sweet-pastel-colors-sunglasses-backpack-denim-jacket-mint-background-stylish-woman_291049-1800.jpg?w=2000" alt="">
-        </div>
-        <div class="inner-wrapper col" style="margin-top: 15rem !important; padding:10px !important">
-            <div class="inner-content" style="color: white;z-index:12;position: relative;">
-                20% Off On Tank Tops
-            </div>
-        <div class="mt-2" style="color: white;z-index:12;position: relative; font-weight:500;text-align:justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-        <button class="mt-2" id="shop" style="z-index:12;position: relative;">Shop Now</button>
-        </div>
-    </div>
-    
-</div> --}}
+</div>
 
 </body>
 
  {{-- custom js --}}
  {{-- <script src="{{asset('user/js/main.js')}}"></script> --}}
-
  <script>
+     var hamburger = document.querySelector('#hamburger');
+     var closeMenu = document.querySelector('#closeMenu');
+     var navbar = document.querySelector('.navbar-container');
+     console.log(navbar);
+     hamburger.onclick = ()=>{
+        navbar.classList.toggle('active');
+        hamburger.style.display ='none';
+        closeMenu.style.display = 'block';
+        
+     }
+     closeMenu.onclick = () =>{
+        navbar.classList.toggle('active');
+        hamburger.style.display ='block';
+        closeMenu.style.display = 'none';
+     }
 
  </script>
 </html>
