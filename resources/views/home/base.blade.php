@@ -2,6 +2,6 @@
 
 @yield('content')
 
-<!-- @yield('slider') -->
+@yield('slider')
 
 @include('home.footer')

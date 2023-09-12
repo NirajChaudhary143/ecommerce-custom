@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\productImageController;
@@ -62,4 +63,12 @@ Route::get('/redirect',[AdminController::class,'redirect'])->name('redirect')->m
 
    Route::get('/',[UserController::class,'index'])->name('website.homepage');
    Route::get('/product-details/{id}',[UserController::class,'product_details'])->name('product.details');
+
+// Cart COntroller
+
+
+Route::middleware('auth')->group(function(){
+    Route::post('add-to-cart/{id}',[CartController::class,'addToCart'])->name('add.to.cart');
+    Route::get('/display-carts',[CartController::class,'dispalyCart'])->name('display.cart');
+});
 require __DIR__.'/auth.php';

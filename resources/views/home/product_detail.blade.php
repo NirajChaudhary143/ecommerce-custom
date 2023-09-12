@@ -25,7 +25,7 @@
                     </div>
                     @endif
                     {{-- cart-container  --}}
-                    <form action="#">
+                    <form action="{{route('add.to.cart',['id'=>$product->id])}}" method="POST">
                         @csrf
                         <div class="row mt-2">
                             <div class="col">
