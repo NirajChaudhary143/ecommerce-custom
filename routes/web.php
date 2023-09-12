@@ -70,5 +70,7 @@ Route::get('/redirect',[AdminController::class,'redirect'])->name('redirect')->m
 Route::middleware('auth')->group(function(){
     Route::post('add-to-cart/{id}',[CartController::class,'addToCart'])->name('add.to.cart');
     Route::get('/display-carts',[CartController::class,'dispalyCart'])->name('display.cart');
+    Route::get('/delete-carts/{id}',[CartController::class,'deleteCarts'])->name('delete.cart');
+    Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
 });
 require __DIR__.'/auth.php';

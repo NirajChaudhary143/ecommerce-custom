@@ -21,17 +21,20 @@
             <tr>
               <td>{{$loop->iteration}}</td>
               <td>{{$cart->product_title}}</td>
-              <td >{{$cart->selling_price}}</td>
+              <td >{{$cart->total_price}}</td>
               <td>
                 {{$cart->product_quantity}}
               </td>
               <td><img src="{{asset($cart->product_image)}}" width="50" height="50" alt="" srcset=""></td>
               <td>
-                <a href="" class="btn btn-danger">Delete</a>
+                <a href="{{route('delete.cart',['id'=>$cart->id])}}" class="btn btn-danger"  onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
               </td>
             </tr>
             @endforeach
         </tbody>
       </table>
+    </div>
+    <div class="container">
+      <a href="{{route('checkout')}}" class="btn btn-primary w-100">Checkout</a>
     </div>
       @endsection

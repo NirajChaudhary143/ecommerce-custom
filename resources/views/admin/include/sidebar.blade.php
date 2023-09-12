@@ -35,6 +35,7 @@
                     <div class="link-name">Home</div>
                 </div>
             </a>
+                
             <a href="{{route('store_user')}}"> 
                 <div class="main-link">
                     <div class="icon"><img width="16px" src="{{asset('image/users.svg')}}" alt="" srcset=""></div>

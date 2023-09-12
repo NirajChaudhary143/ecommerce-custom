@@ -13,6 +13,7 @@ class Cart extends Model
         'product_quantity',
         'selling_price',
         'product_image',
-        'username'
+        'username',
+        'total_price'
     ];
 }

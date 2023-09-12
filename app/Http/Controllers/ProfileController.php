@@ -38,12 +38,15 @@ class ProfileController extends Controller
         $request->validate([
             'name'=>'required',
             'username'=>'required|alpha_num',
-            'email'=>'required'
+            'email'=>'required',
+            'phone_number'=>'required|digits:10'
         ]);
 
         $user = User::find($id);
         $user->name= $request->name;
         $user->username = $request->username;
+        $user->phone_number = $request->phone_number;
+        $user->address = $request->address;
         $user->email = $request->email;
         $user->save();
         if($request->hasFile('image')){

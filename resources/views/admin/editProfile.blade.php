@@ -33,7 +33,27 @@
                 </span>
             </div>
             <div class="col bg-white p-1 mt-2">
-                <label for="">Username</label>
+                <label for="">Phone Number</label>
+                <input type="number" name="phone_number" value="{{$user->phone_number}}" class="form-control mt-1">
+                <span class="text-danger">
+                    @error('phone_number')
+                        {{$message}}
+                    @enderror
+         
+                </span>
+            </div>
+            <div class="col bg-white p-1 mt-2">
+                <label for="">Location</label>
+                <input type="text" name="address" value="{{$user->address}}" class="form-control mt-1">
+                <span class="text-danger">
+                    @error('address')
+                        {{$message}}
+                    @enderror
+         
+                </span>
+            </div>
+            <div class="col bg-white p-1 mt-2">
+                <label for="">User Profile</label>
                 <input type="file" name="image" id="user_profile" value="" class="form-control mt-1">
                 <div class="col image-preview-container">
                     <!-- Image preview container -->
