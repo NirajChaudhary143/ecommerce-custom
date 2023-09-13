@@ -97,7 +97,7 @@
                            <a class="nav-link" href="product.html">Products</a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link" href="{{url('/display-carts')}}">Cart</a>
+                           <a class="nav-link" href="{{url('/display-carts')}}">Cart<sup style="color: red;margin-left:2px">{{$cartNumber}}</sup></a>
                         </li>
                         <li class="nav-item">
                            <a class="nav-link" href="contact.html">Contact</a>

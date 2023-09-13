@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductImages;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,5 +46,55 @@ class CartController extends Controller
         $user = Auth::user();
         $carts = Cart::where('username',$userId)->get();
         return view('home.checkout',compact('carts','user'));
+    }
+
+    public function addOrder(Request $request){
+        if($request->isMethod('post')){
+
+            $request->validate([
+                'name'=>'required',
+                'email'=>'required|email',
+                'phone_number'=>'required|digits:10',
+                'address'=>'required'
+            ]);
+            $userId = Auth::user()->id;
+            $user = User::find($userId);
+            $user->name = $request['name'];
+            $user->phone_number=$request['phone_number'];
+            $user->address=$request['address'];
+            $user->email=$request['email'];
+            $user->save();
+          
+            // get cart details
+            $carts = Cart::where('username',$userId)->get();
+            // save order details on order table
+            // After processing the order and deleting the cart items
+            if ($carts->count() > 0) {
+                foreach ($carts as $cart) {
+                    $order = new Order();
+                    $order->user_id = $userId;
+                    $order->quantity = $cart->product_quantity;
+                    $order->product_title = $cart->product_title;
+                    $order->total_price = $cart->total_price;
+                    $order->payment_status = 'unpaid';
+                    $order->payment_method = 'COD';
+                    $order->status = 'pending';
+                    $res = $order->save();
+                    $cart->delete();
+                }
+    
+                // Store a success message in the session
+                session()->flash('success', 'Order Placed Successfully');
+            } 
+            else {
+                session()->flash('error', 'Please Add Products To Cart');
+            }
+    
+            return view('home.success');
+        }
+        if ($request->isMethod('get')) {
+            return redirect('/checkout');
+        }
+
     }
 }

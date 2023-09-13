@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\ProductImages;
 use Illuminate\Http\Request;
@@ -10,8 +11,9 @@ class UserController extends Controller
 {
     public function index(){
         $products = Product::latest()->paginate(5);
+        $cartNumber = Cart::count();
         $productImage = ProductImages::all();
-        return view('home.userpage',compact('products','productImage'));
+        return view('home.userpage',compact('products','productImage','cartNumber'));
     }
     public function product_details($id){
         $product = Product::find($id);

@@ -72,5 +72,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/display-carts',[CartController::class,'dispalyCart'])->name('display.cart');
     Route::get('/delete-carts/{id}',[CartController::class,'deleteCarts'])->name('delete.cart');
     Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
+    Route::post('place-order',[CartController::class,'addOrder'])->name('add.order');
 });
 require __DIR__.'/auth.php';

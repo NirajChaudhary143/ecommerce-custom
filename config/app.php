@@ -171,6 +171,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Inertia\ServiceProvider::class,
+        App\Providers\CartComposerServiceProvider::class,
 
     ])->toArray(),
 
