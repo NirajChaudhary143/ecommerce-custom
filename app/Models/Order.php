@@ -15,6 +15,7 @@ class Order extends Model
         'payment_status',
         'payment_method',
         'status',
-        'product_title'
+        'product_title',
+        'orderId'
     ];
 }

@@ -20,4 +20,9 @@ class OrderController extends Controller
         $orderDetails = Order::where('user_id',$userId)->get();
         return view('home.myOrder',compact('userId','orderDetails'));
     }
+
+    public function editOrder($id){
+        $orderDetails = Order::find($id);
+        return view('admin.editOrder',compact('orderDetails'));
+    }
 }

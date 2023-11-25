@@ -70,22 +70,33 @@ class CartController extends Controller
             // save order details on order table
             // After processing the order and deleting the cart items
             if ($carts->count() > 0) {
+                $latestOrderId = Order::where('user_id', $userId)->latest()->first();
+            
+                if ($latestOrderId) {
+                    $orderIdNew = $latestOrderId->orderId + 1;
+                } else {
+                    // If no previous orders exist for this user
+                    $orderIdNew = 1000; // Starting order ID
+                }
+            
                 foreach ($carts as $cart) {
                     $order = new Order();
                     $order->user_id = $userId;
+                    $order->orderId = $orderIdNew;
                     $order->quantity = $cart->product_quantity;
                     $order->product_title = $cart->product_title;
                     $order->total_price = $cart->total_price;
                     $order->payment_status = 'unpaid';
                     $order->payment_method = 'COD';
                     $order->status = 'pending';
-                    $res = $order->save();
+                    $order->save();
                     $cart->delete();
                 }
-    
+            
                 // Store a success message in the session
-                session()->flash('success', 'Order Placed Successfully');
+                session()->flash('success', 'Order(s) Placed Successfully');
             } 
+
             else {
                 session()->flash('error', 'Please Add Products To Cart');
             }

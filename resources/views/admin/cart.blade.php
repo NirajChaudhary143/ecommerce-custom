@@ -54,7 +54,7 @@
                     <td>{{$order->payment_method}}</td>
                     <td>{{$order->status}}</td>
                     <td>
-                        <a href="#" class="btn btn-primary">Edit</a>
+                        <a href="{{route('editOrder',['id'=>$order->id])}}" class="btn btn-primary">Edit</a>
                     </td>
                 </tr>
             @endforeach
