@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\productImageController;
 use App\Http\Controllers\ProfileController;
@@ -72,6 +73,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/display-carts',[CartController::class,'dispalyCart'])->name('display.cart');
     Route::get('/delete-carts/{id}',[CartController::class,'deleteCarts'])->name('delete.cart');
     Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
-    Route::post('place-order',[CartController::class,'addOrder'])->name('add.order');
+    Route::post('/place-order',[CartController::class,'addOrder'])->name('add.order');
+    Route::get('/orders',[OrderController::class,'index'])->name('order.index');
+    Route::get('/my-order',[OrderController::class,'myOrder'])->name('my.order');
 });
 require __DIR__.'/auth.php';

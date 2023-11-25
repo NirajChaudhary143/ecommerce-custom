@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        $products = Product::latest()->paginate(5);
+        $products = Product::where('status','active')->latest()->paginate(5);
         $cartNumber = Cart::count();
         $productImage = ProductImages::all();
         return view('home.userpage',compact('products','productImage','cartNumber'));

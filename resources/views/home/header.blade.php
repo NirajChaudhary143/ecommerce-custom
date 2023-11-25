@@ -100,7 +100,7 @@
                            <a class="nav-link" href="{{url('/display-carts')}}">Cart<sup style="color: red;margin-left:2px">{{$cartNumber}}</sup></a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link" href="contact.html">Contact</a>
+                           <a class="nav-link" href="{{route('my.order')}}">Order</a>
                         </li>
                         <form class="form-inline">
                            <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">

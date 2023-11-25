@@ -60,6 +60,12 @@
                     <div class="link-name">Products</div>
                 </div>
             </a>
+            <a href="{{route('order.index')}}"> 
+                <div class="main-link">
+                    <div class="icon"><img width="16px" src="{{asset('image/cart.svg')}}" alt="" srcset=""></div>
+                    <div class="link-name">Orders</div>
+                </div>
+            </a>
         </div>
     </div>
 </div>

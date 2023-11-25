@@ -92,9 +92,5 @@ class CartController extends Controller
     
             return view('home.success');
         }
-        if ($request->isMethod('get')) {
-            return redirect('/checkout');
-        }
-
     }
 }
